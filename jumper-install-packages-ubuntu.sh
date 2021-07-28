@@ -136,6 +136,13 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     sudo nano /usr/share/X11/xkb/symbols/br
 fi
 
+# GDM3 with Xorg
+echo -e "\nChange GDM3 config?"
+echo "WaylandEnable=false"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo nano /etc/gdm3/custom.conf
+fi
+
 read -p "Enter to exit..."
 
 
