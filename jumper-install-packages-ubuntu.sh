@@ -2,107 +2,141 @@
 #~ Write by Jumper Luko
 #~ Package faster installer
 
-## ===== ===== =====
-## General Functions
-#| generate a file log
+# General Functions
+# Generate a file log
 timestamp=$(date +%Y-%m-%d_%H-%M-%S)
 save() {
     tee -a ~/JumperInstalltion_$timestamp.txt
 }
 
-#| Show yes or no
-yes_or_no() {
+# Show yes or no
+yes_no() {
+    unset $yes_or_no
     while true; do
         read -p "$* [y/n]: " yn
         case $yn in
-            [Yy]*) yes_no="yes" && return 0  ;;  
-            [Nn]*) printf "Aborted\n\n" ; yes_no="no" && return  1 ;;
+            [Yy]*) yes_or_no="yes" && return 0  ;;  
+            [Nn]*) printf "Aborted\n\n" ; yes_or_no="no" && return  1 ;;
         esac
-        yes_no="null"
+        yes_or_no="null"
     done
 }
 
-#| Testing random things
-# functionTest(){
-#     echo "Function Test"
-#     read -p "$* [y/n]: " yn
-# }
+# apt & flatpaks things
+apti="sudo apt install"
+aptu="sudo apt update"
+fpki="sudo flatpak install flathub"
 
 
-## ===== ===== =====
-## Apresentação
-printf "=== Personal packages by Jumper Luko ===\n"
-echo ""
-echo "Do you want to start?"
-while true; do
-    read -p "$* [y/n]: " yn
-    case $yn in
-        [Yy]*) break ;;
-        [Nn]*) printf "\nAborted\n" ; exit ;;
-    esac
-done
+# Apresentação
+echo -e "=== Personal packages by Jumper Luko ===\n"
 
-## ===== ===== =====
-## Basics programs
-function basics() {
-    printf "\nInstall basic programs?\n"
-    basics="gdebi pwgen figlet geany rawtherapee"
-    echo "apt install $basics" | save
+# Gnome Disks
+echo -e "\nGnome Disks?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    gnome-disks
+fi
 
-    yes_or_no
-    if [ "$yes_no" == "no" ];
-    then
-        return
-    fi
+# Apt update
+echo -e "\nApt update?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    $aptu
+fi
 
-    sudo apt install $basics | save
-}   
-basics
+# Apt upgrade
+echo -e "\nApt upgrade?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo apt upgrade
+fi
 
-## ===== ===== =====
-## PPAs
-## CoreCtrl
-function PPAs(){
-    echo "Install PPAs and packages?" | save
-    echo "coreCtrl" | save
+# Basics packages
+echo -e "\nInstall basic packages?"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui"
+echo "apt install $basics"
 
-    yes_or_no
-    if [ "$yes_no" == "no" ];
-    then
-        return
-    fi
+yes_no;if [ $yes_or_no == "yes" ]; then
+    $apti $basics
+fi
 
-    sudo add-apt-repository ppa:ernstp/mesarc | save
-    sudo apt update | save
-    sudo apt install corectrl -y | save
-}
-PPAs
+# Zorin Desktop
+echo -e "\nZorin OS Desktop?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo add-apt-repository ppa:zorinos/stable -y
+    sudo add-apt-repository ppa:zorinos/patches -y
+    sudo add-apt-repository ppa:zorinos/apps -y
+    sudo add-apt-repository ppa:zorinos/drivers -y
+    sudo apt update
+    $apti zorin-os-desktop --install-recommends
+fi
 
-# echo "wait 30 seconds, the code is not ready"
-# sleep 30
+# Basics programs
+echo -e "\nInstall basic programs?"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color"
+echo "apt install $programs"
 
-## ===== ===== =====
-## dpkg to install DEBs
-function debs(){
-    echo "Install debs with dpkg?" | save
-    dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb onlyoffice-desktopeditors_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb"
-    echo "$dpkgPackages" | save
+yes_no;if [ $yes_or_no == "yes" ]; then
+    $apti $programs
+fi
 
-    yes_or_no
-    if [ "$yes_no" == "no" ];
-    then
-        return
-    fi
+# PPAs
+echo -e "\nInstall PPAs and packages?"
+PPApackages="corectrl figma-linux mainline lutris spotify-client"
+echo "$PPApackages"
 
-    echo "installing???"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo add-apt-repository ppa:ernstp/mesarc -y
+    sudo add-apt-repository ppa:chrdevs/figma -y
+    sudo add-apt-repository ppa:cappelikan/ppa -y
+    sudo add-apt-repository ppa:lutris-team/lutris -y
+
+    curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+    echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+    $aptu
+
+    $apti $PPApackages
+fi
+
+# dpkg to install DEBs
+echo -e "\nInstall debs with dpkg?"
+dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb onlyoffice-desktopeditors_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb heroic_1.8.2_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.15.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb"
+echo "$dpkgPackages"
+
+yes_no;if [ $yes_or_no == "yes" ]; then
     cd /mnt/Jumper-Storage/Programs/deb
-    sudo dpkg -i $dpkgPackages | save
-    sudo apt install -f && sudo apt update && sudo apt upgrade | save
-}
-debs
+    sudo dpkg -i $dpkgPackages
+    $apti -f
+    $aptu
+    sudo apt upgrade
+fi
+
+# Flatpaks
+echo -e "\nInstall Flatpaks?"
+fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher"
+echo $fpkPackages
+
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo apt install flatpak gnome-software-plugin-flatpak
+    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    $fpki $fpkPackages
+
+    echo -e "\nAll Flatpaks?"
+    fpkPackages2="com.rafaelmardojai.Blanket fr.romainvigier.MetadataCleaner org.gabmus.whatip io.github.seadve.Kooha org.gnome.gitlab.somas.Apostrophe org.gnome.World.PikaBackup org.gnome.design.Contrast com.github.gi_lom.dialect com.github.huluti.Curtail com.github.tchx84.Flatseal org.gabmus.hydrapaper org.gnome.BreakTimer com.uploadedlobster.peek com.bitstower.Markets com.github.unrud.VideoDownloader org.gnome.gitlab.YaLTeR.VideoTrimmer com.github.liferooter.textpieces com.github.johnfactotum.Foliate org.gnome.Boxes org.flozz.yoga-image-optimizer"
+    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots"
+    yes_no;if [ $yes_or_no == "yes" ]; then
+        $fpki $fpkPackages2
+        $fpki $fpkPackages3
+    fi
+fi
+
+# Disable scroll lock
+echo -e "\nComment Scroll lock line of BR keyboard?"
+echo "modifier_map Mod3   { Scroll_Lock };"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo nano /usr/share/X11/xkb/symbols/br
+fi
 
 read -p "Enter to exit..."
-
 
 
 # add() {
@@ -111,3 +145,7 @@ read -p "Enter to exit..."
 # }
 
 # add 1 2
+
+# =========
+## NOTES
+# https://askubuntu.com/questions/420981/how-do-i-save-terminal-output-to-a-file#731237
