@@ -51,7 +51,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui htop adb smbclient samba"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -71,7 +71,7 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -99,7 +99,7 @@ fi
 
 # dpkg to install DEBs
 echo -e "\nInstall debs with dpkg?"
-dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb onlyoffice-desktopeditors_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb heroic_1.8.2_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.15.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb"
+dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb onlyoffice-desktopeditors_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb heroic_1.8.2_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.15.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb Popcorn-Time-0.4.5-amd64.deb"
 echo "$dpkgPackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -121,8 +121,8 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     $fpki $fpkPackages
 
     echo -e "\nAll Flatpaks?"
-    fpkPackages2="com.rafaelmardojai.Blanket fr.romainvigier.MetadataCleaner org.gabmus.whatip io.github.seadve.Kooha org.gnome.gitlab.somas.Apostrophe org.gnome.World.PikaBackup org.gnome.design.Contrast com.github.gi_lom.dialect com.github.huluti.Curtail com.github.tchx84.Flatseal org.gabmus.hydrapaper org.gnome.BreakTimer com.uploadedlobster.peek com.bitstower.Markets com.github.unrud.VideoDownloader org.gnome.gitlab.YaLTeR.VideoTrimmer com.github.liferooter.textpieces com.github.johnfactotum.Foliate org.gnome.Boxes org.flozz.yoga-image-optimizer"
-    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots"
+    fpkPackages2="com.rafaelmardojai.Blanket fr.romainvigier.MetadataCleaner org.gabmus.whatip io.github.seadve.Kooha org.gnome.gitlab.somas.Apostrophe org.gnome.World.PikaBackup org.gnome.design.Contrast com.github.gi_lom.dialect com.github.huluti.Curtail com.github.tchx84.Flatseal org.gabmus.hydrapaper org.gnome.BreakTimer com.uploadedlobster.peek com.bitstower.Markets com.github.unrud.VideoDownloader org.gnome.gitlab.YaLTeR.VideoTrimmer com.github.liferooter.textpieces com.github.johnfactotum.Foliate org.gnome.Boxes org.flozz.yoga-image-optimizer com.github.micahflee.torbrowser-launcher"
+    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots org.onionshare.OnionShare"
     yes_no;if [ $yes_or_no == "yes" ]; then
         $fpki $fpkPackages2
         $fpki $fpkPackages3
@@ -141,6 +141,18 @@ echo -e "\nChange GDM3 config?"
 echo "WaylandEnable=false"
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo nano /etc/gdm3/custom.conf
+fi
+
+# Default browser
+echo "Trocar browser padrão?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo update-alternatives --config x-www-browser
+fi
+
+# Samba password
+echo "Add samba password for this user?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo smbpasswd -a $USER
 fi
 
 read -p "Enter to exit..."
