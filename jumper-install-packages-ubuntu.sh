@@ -69,9 +69,15 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     $apti zorin-os-desktop --install-recommends
 fi
 
+# Gnome Desktop
+echo -e "\nGnome Desktop?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    $apti gnome
+fi
+
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -144,15 +150,23 @@ yes_no;if [ $yes_or_no == "yes" ]; then
 fi
 
 # Default browser
-echo "Trocar browser padrão?"
+echo -e "\nTrocar browser padrão?"
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo update-alternatives --config x-www-browser
 fi
 
 # Samba password
-echo "Add samba password for this user?"
+echo -e "\nAdd samba password for this user?"
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo smbpasswd -a $USER
+fi
+
+# Remove QT variables
+echo -e "\nRemove QT variables on startup?"
+echo "qt-qpa-platformtheme.sh & qt-style-override.sh"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    sudo rm /etc/profile.d/qt-qpa-platformtheme.sh
+    sudo rm /etc/profile.d/qt-style-override.sh
 fi
 
 read -p "Enter to exit..."
