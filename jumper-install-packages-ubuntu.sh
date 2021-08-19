@@ -51,7 +51,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui htop adb smbclient samba npm"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
