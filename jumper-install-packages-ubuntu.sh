@@ -87,14 +87,13 @@ fi
 # PPAs
 echo -e "\nInstall PPAs and packages?"
 PPApackages="corectrl figma-linux mainline lutris spotify-client"
-echo "$PPApackages heroic"
+echo "$PPApackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo add-apt-repository ppa:ernstp/mesarc -y
     sudo add-apt-repository ppa:chrdevs/figma -y
     sudo add-apt-repository ppa:cappelikan/ppa -y
     sudo add-apt-repository ppa:lutris-team/lutris -y
-    bash <(wget -O- https://raw.githubusercontent.com/Heroic-Games-Launcher/HeroicGamesLauncher/main/madrepo.sh)
 
     curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
@@ -106,7 +105,7 @@ fi
 
 # dpkg to install DEBs
 echo -e "\nInstall debs with dpkg?"
-dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb heroic_1.8.2_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.15.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb Popcorn-Time-0.4.5-amd64.deb Motrix_1.6.11_amd64.deb"
+dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb heroic_1.8.2_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.15.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb Popcorn-Time-0.4.5-amd64.deb Motrix_1.6.11_amd64.deb heroic_1.8.2_amd64.deb"
 echo "$dpkgPackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
