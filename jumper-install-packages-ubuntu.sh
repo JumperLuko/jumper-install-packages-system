@@ -77,7 +77,7 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -86,17 +86,20 @@ fi
 
 # PPAs
 echo -e "\nInstall PPAs and packages?"
-PPApackages="corectrl figma-linux mainline lutris spotify-client"
+PPApackages="corectrl figma-linux mainline spotify-client multisystem"
 echo "$PPApackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo add-apt-repository ppa:ernstp/mesarc -y
     sudo add-apt-repository ppa:chrdevs/figma -y
     sudo add-apt-repository ppa:cappelikan/ppa -y
-    sudo add-apt-repository ppa:lutris-team/lutris -y
+    #sudo add-apt-repository ppa:lutris-team/lutris -y
 
     curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+    sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
+    wget -q -O "-" http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add - 
 
     $aptu
 
@@ -128,7 +131,7 @@ yes_no;if [ $yes_or_no == "yes" ]; then
 
     echo -e "\nAll Flatpaks?"
     fpkPackages2="com.rafaelmardojai.Blanket fr.romainvigier.MetadataCleaner org.gabmus.whatip io.github.seadve.Kooha org.gnome.gitlab.somas.Apostrophe org.gnome.World.PikaBackup org.gnome.design.Contrast com.github.gi_lom.dialect com.github.huluti.Curtail com.github.tchx84.Flatseal org.gabmus.hydrapaper org.gnome.BreakTimer com.uploadedlobster.peek com.bitstower.Markets com.github.unrud.VideoDownloader org.gnome.gitlab.YaLTeR.VideoTrimmer com.github.liferooter.textpieces com.github.johnfactotum.Foliate org.gnome.Boxes org.flozz.yoga-image-optimizer com.github.micahflee.torbrowser-launcher org.onlyoffice.desktopeditors"
-    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots org.onionshare.OnionShare"
+    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots org.onionshare.OnionShare codes.nora.gDiceRoller"
     yes_no;if [ $yes_or_no == "yes" ]; then
         $fpki $fpkPackages2
         $fpki $fpkPackages3
