@@ -191,8 +191,8 @@ echo -r "\n Link Plex folder to /mnt/Jumper-Storage/var/?"
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo service plexmediaserver stop
     sudo rm -r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server"
-    sudo ln -s -r "/mnt/Jumper-Storage/var/Plex Media Server/" "/var/lib/plexmediaserver/Library/Application Support/"
-    sudo chown plex:plex -R "/mnt/Jumper-Storage/var/Plex Media Server/"
+    sudo ln -s -r "/home/var/Plex Media Server" "/var/lib/plexmediaserver/Library/Application Support/"
+    sudo chown plex:plex -R "/home/var/Plex Media Server"
     sudo service plexmediaserver start
 fi
 
