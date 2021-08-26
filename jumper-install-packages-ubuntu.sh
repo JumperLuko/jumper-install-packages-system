@@ -51,7 +51,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct wine winetricks lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.8-venv"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.8-venv"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -86,7 +86,7 @@ fi
 
 # PPAs
 echo -e "\nInstall PPAs and packages?"
-PPApackages="corectrl figma-linux mainline spotify-client multisystem heroic"
+PPApackages="corectrl figma-linux mainline spotify-client multisystem heroic winehq-stable winetricks"
 echo "$PPApackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -95,15 +95,23 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     sudo add-apt-repository ppa:cappelikan/ppa -y
     #sudo add-apt-repository ppa:lutris-team/lutris -y
 
+    # Spotify
     curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
+    # Multisystem
     sudo apt-add-repository 'deb http://liveusb.info/multisystem/depot all main'
     wget -q -O "-" http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add - 
 
-    sudo echo -e "# MAD Linux > Heroic Games\nPackage: *\nPin: origin sourceforge.net\nPin-Priority: -100\n\nPackage: heroic\nPin: origin sourceforge.net\nPin-Priority: 100" > /etc/apt/preferences.d/heroic
+    # Madlinux 
+    sudo echo -e "# MAD Linux: *\nPin: origin sourceforge.net\nPin-Priority: 100" > /etc/apt/preferences.d/madlinux
     echo 'deb https://sourceforge.net/projects/madlinux/files/repo core main'|sudo tee /etc/apt/sources.list.d/madlinux.list
     wget -qO- Https://sourceforge.net/projects/madlinux/files/repo/madlinux.key|gpg --dearmor|sudo tee /etc/apt/trusted.gpg.d/madlinux.gpg>/dev/null
+
+    # wineHQ Ubuntu 20.04
+    sudo dpkg --add-architecture i386 
+    wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+    sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 
     $aptu
 
