@@ -51,7 +51,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.8-venv"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.8-venv rar unrar apt-transport-https curl"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -77,16 +77,16 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins pulseeffects"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
     $apti $programs
 fi
 
-# PPAs
-echo -e "\nInstall PPAs and packages?"
-PPApackages="corectrl figma-linux mainline spotify-client multisystem heroic winehq-stable winetricks"
+# PPAs & repos
+echo -e "\nInstall PPAs & repos and packages?"
+PPApackages="corectrl figma-linux mainline spotify-client multisystem heroic winehq-stable winetricks brave-browser"
 echo "$PPApackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -113,6 +113,10 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
     sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
 
+    # Brave
+    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
     $aptu
 
     $apti $PPApackages
@@ -133,7 +137,7 @@ fi
 
 # Flatpaks
 echo -e "\nInstall Flatpaks?"
-fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher org.blender.Blender"
+fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher org.blender.Blender org.mypaint.MyPaint"
 echo $fpkPackages
 
 yes_no;if [ $yes_or_no == "yes" ]; then
