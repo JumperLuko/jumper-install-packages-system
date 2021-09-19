@@ -104,7 +104,7 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     wget -q -O "-" http://liveusb.info/multisystem/depot/multisystem.asc | sudo apt-key add - 
 
     # Madlinux 
-    sudo echo -e "# MAD Linux: *\nPin: origin sourceforge.net\nPin-Priority: 100" > /etc/apt/preferences.d/madlinux
+    sudo echo -e "# MAD Linux > Heroic Games\nPackage: *\nPin: origin sourceforge.net\nPin-Priority: -100\n\nPackage: heroic\nPin: origin sourceforge.net\nPin-Priority: 100" > /etc/apt/preferences.d/heroic
     echo 'deb https://sourceforge.net/projects/madlinux/files/repo core main'|sudo tee /etc/apt/sources.list.d/madlinux.list
     wget -qO- Https://sourceforge.net/projects/madlinux/files/repo/madlinux.key|gpg --dearmor|sudo tee /etc/apt/trusted.gpg.d/madlinux.gpg>/dev/null
 
