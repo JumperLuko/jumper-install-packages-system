@@ -155,6 +155,11 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     yes_no;if [ $yes_or_no == "yes" ]; then
         $fpki $fpkPackages2
         $fpki $fpkPackages3
+        
+        #kooha fix for Ubuntu
+        sudo flatpak update --commit=e52aeb30b4d9f97436de184b6703ae83c48468880d95f0b74916cd6fca3e7c2a io.github.seadve.Kooha
+        sudo flatpak mask io.github.seadve.Kooha
+
     fi
 fi
 
