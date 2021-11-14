@@ -1,6 +1,6 @@
 #!/bin/bash
 #~ Write by Jumper Luko
-#~ Package faster installer for Ubuntu LTS (20.04)
+#~ Package faster installer for Ubuntu (21.10)
 #~ https://github.com/JumperLuko/SicoobLinux-Configs_Apps
 
 # General Functions
@@ -52,7 +52,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.8-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -78,7 +78,7 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-actions nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweaks fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -112,7 +112,7 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     # wineHQ Ubuntu 20.04
     sudo dpkg --add-architecture i386 
     wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-    sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main'
+    sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ impish main'
 
     # Brave
     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -128,7 +128,7 @@ fi
 
 # dpkg to install DEBs
 echo -e "\nInstall debs with dpkg?"
-dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.16.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb Popcorn-Time-0.4.5-amd64.deb Motrix_1.6.11_amd64.deb webapp-manager_1.1.5_all.deb exodus-linux-x64-21.7.30.deb appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb"
+dpkgPackages="parsec-linux.deb Minecraft.deb teams_1.3.00.25560_amd64.deb teamviewer_15.10.5_amd64.deb steam_latest.deb openrgb_0.5_amd64_88464d1.deb key-mapper-0.8.0.deb google-chrome-stable_current_amd64.deb digimend-dkms_10_all.deb code_1.50.0-1602051089_amd64.deb binance-amd64-linux.deb anydesk_6.0.1-1_amd64.deb vivaldi-stable_4.0.2312.27-1_amd64.deb discord-0.0.16.deb plexmediaserver_1.23.5.4862-0f739d462_amd64.deb virtualbox-6.1_6.1.24-145767~Ubuntu~eoan_amd64.deb Popcorn-Time-0.4.5-amd64.deb Motrix_1.6.11_amd64.deb webapp-manager_1.1.5_all.deb exodus-linux-x64-21.7.30.deb"
 echo "$dpkgPackages"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
