@@ -52,7 +52,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build simplescreenrecorder"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -78,7 +78,7 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweaks fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweaks fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud lutris stacer"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -139,9 +139,18 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     sudo apt upgrade
 fi
 
+# Better Dirscord
+echo -e "\n Install Better Discord?"
+yes_no;if [ $yes_or_no == "yes" ]; then
+    curl -O https://raw.githubusercontent.com/bb010g/betterdiscordctl/master/betterdiscordctl
+    chmod +x betterdiscordctl
+    sudo mv betterdiscordctl /usr/local/bin
+    betterdiscordctl install
+fi
+
 # Flatpaks
 echo -e "\nInstall Flatpaks?"
-fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher org.blender.Blender org.mypaint.MyPaint org.gnome.World.PikaBackup com.github.wwmm.easyeffects com.github.wwmm.pulseeffects"
+fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher org.blender.Blender org.mypaint.MyPaint org.gnome.World.PikaBackup com.github.wwmm.easyeffects com.github.wwmm.pulseeffects org.pulseaudio.pavucontrol"
 echo $fpkPackages
 
 yes_no;if [ $yes_or_no == "yes" ]; then
@@ -219,6 +228,12 @@ fi
 
 read -p "Enter to exit..."
 
+# MangoHud
+#git clone --recurse-submodules https://github.com/flightlessmango/MangoHud.git
+#cd MangoHud
+#./build.sh build
+#./build.sh package
+#./build.sh install
 
 # add() {
 #     result=$(($1 + $2))
