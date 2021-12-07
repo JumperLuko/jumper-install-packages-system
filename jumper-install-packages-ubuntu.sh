@@ -52,11 +52,13 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build simplescreenrecorder"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build ttf-mscorefonts-installer fonts-noto fonts-noto-cjk fonts-noto-color-emoji"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
     $apti $basics
+    echo "updating foto cache"
+    sudo fc-cache -f -v
 fi
 
 # Zorin Desktop
@@ -78,7 +80,7 @@ fi
 
 # Basics programs
 echo -e "\nInstall basic programs?"
-programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweaks fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud lutris stacer"
+programs="geany rawtherapee darktable audacity qbittorrent cheese vlc remmina gpick pdfmod pinta minetest menulibre gnome-tweaks fontforge kdenlive nautilus-extension-gnome-terminal nautilus-image-converter nautilus-admin nautilus-gtkhash nautilus-share nautilus-wipe folder-color grub-customizer virt-manager linssid cpu-x hardinfo gparted synaptic pybik lsp-plugins mangohud lutris stacer simplescreenrecorder"
 echo "apt install $programs"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
