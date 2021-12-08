@@ -52,7 +52,7 @@ fi
 
 # Basics packages
 echo -e "\nInstall basic packages?"
-basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build ttf-mscorefonts-installer fonts-noto fonts-noto-cjk fonts-noto-color-emoji"
+basics="gdebi pwgen figlet apt-show-versions x11vnc qt5ct lm-sensors python3-pip git git-gui htop adb smbclient samba npm ssh-askpass scrcpy nmapsi4 nmap pipx python3.10-venv rar unrar apt-transport-https curl v4l2loopback-dkms openjdk-16-dbg openjdk-8-dbg screen ninja-build ttf-mscorefonts-installer fonts-noto fonts-noto-cjk fonts-noto-color-emoji libpangox-1.0-0"
 echo "apt install $basics"
 
 yes_no;if [ $yes_or_no == "yes" ]; then
