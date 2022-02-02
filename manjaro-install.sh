@@ -24,7 +24,7 @@ yay -S --needed pwgen figlet x11vnc qt5ct wine winetricks wine-mono i2c-tools py
 yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin 
 
 # Programs to system
-yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git
+yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy
 
 # Programs
 yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta minetest kdenlive fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
