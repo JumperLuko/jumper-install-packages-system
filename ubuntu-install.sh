@@ -3,25 +3,8 @@
 #~ Package faster installer for Ubuntu (21.10)
 #~ https://github.com/JumperLuko/SicoobLinux-Configs_Apps
 
-# General Functions
-# Generate a file log
-timestamp=$(date +%Y-%m-%d_%H-%M-%S)
-save() {
-    tee -a ~/JumperInstalltion_$timestamp.txt
-}
-
-# Show yes or no
-yes_no() {
-    unset $yes_or_no
-    while true; do
-        read -p "$* [y/n]: " yn
-        case $yn in
-            [Yy]*) yes_or_no="yes" && return 0  ;;  
-            [Nn]*) printf "Aborted\n\n" ; yes_or_no="no" && return  1 ;;
-        esac
-        yes_or_no="null"
-    done
-}
+source ./functions_variables.sh
+stamp "Ubuntu: "
 
 # apt & flatpaks things
 apti="sudo apt install"
@@ -159,35 +142,6 @@ yes_no;if [ $yes_or_no == "yes" ]; then
     sudo mv betterdiscordctl /usr/local/bin
     betterdiscordctl install
 fi
-
-# Flatpaks
-echo -e "\nInstall Flatpaks?"
-fpkPackages="org.gimp.GIMP org.inkscape.Inkscape org.kde.krita io.mrarm.mcpelauncher org.blender.Blender org.mypaint.MyPaint org.gnome.World.PikaBackup com.github.wwmm.easyeffects com.github.wwmm.pulseeffects org.pulseaudio.pavucontrol"
-echo $fpkPackages
-
-yes_no;if [ $yes_or_no == "yes" ]; then
-    sudo apt install flatpak gnome-software-plugin-flatpak
-    sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    $fpki $fpkPackages
-
-    echo -e "\nAll Flatpaks?"
-    fpkPackages2="com.rafaelmardojai.Blanket fr.romainvigier.MetadataCleaner org.gabmus.whatip io.github.seadve.Kooha org.gnome.gitlab.somas.Apostrophe org.gnome.design.Contrast com.github.gi_lom.dialect com.github.huluti.Curtail com.github.tchx84.Flatseal org.gabmus.hydrapaper org.gnome.BreakTimer com.uploadedlobster.peek com.bitstower.Markets com.github.unrud.VideoDownloader org.gnome.gitlab.YaLTeR.VideoTrimmer com.github.liferooter.textpieces com.github.johnfactotum.Foliate org.gnome.Boxes org.flozz.yoga-image-optimizer com.github.micahflee.torbrowser-launcher org.onlyoffice.desktopeditors"
-    fpkPackages3="com.github.johnfactotum.QuickLookup com.belmoussaoui.Obfuscate org.gnome.gitlab.YaLTeR.Identity com.github.maoschanz.drawing com.leinardi.gst io.github.obiwankennedy.HotShots org.onionshare.OnionShare codes.nora.gDiceRoller"
-    yes_no;if [ $yes_or_no == "yes" ]; then
-        $fpki $fpkPackages2
-        $fpki $fpkPackages3
-        
-        #kooha fix for Ubuntu
-        sudo flatpak update --commit=e52aeb30b4d9f97436de184b6703ae83c48468880d95f0b74916cd6fca3e7c2a io.github.seadve.Kooha
-        sudo flatpak mask io.github.seadve.Kooha
-
-    fi
-fi
-
-# Snaps
-echo -e "\nInstall Snaps?"
-snapPackages="notion-snap"
-echo $snapPackages
 
 yes_no;if [ $yes_or_no == "yes" ]; then
     sudo snap install $snapPackages
