@@ -18,9 +18,9 @@ yay -S pipewire-pulse
 
 yay -S --needed pwgen figlet x11vnc qt5ct wine winetricks wine-mono i2c-tools python-pip python-pipx git gitui htop smbclient samba npm sshpass linux515 linux515-headers flatpak flatpak-builder android-tools bash-completion noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-windows ttf-ms-fonts openssh openssh-askpass x11-ssh-askpass xpad-dkms-git gnome-session-properties startup-settings-git adduser
 
-yay -S --needed --noconfirm geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive virt-manager linssid hardinfo remmina-plugin-teamviewer gparted nautilus-share nautilus-compare  nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer stacer-bin simplescreenrecorder corectrl
+yay -S --needed --noconfirm geany rawtherapee darktable audacity qbittorrent cheese vlc remmina blender gpick pdfmod pinta minetest menulibre gnome-tweak-tool fontforge kdenlive virt-manager linssid hardinfo remmina-plugin-teamviewer gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin simplescreenrecorder corectrl
 
-yay -S --needed --noconfirm --sudoloop mangohud cpu-x minecraft-launcher teamviewer steam-native steam-manjaro parsec-bin teams openrgb input-remapper-git google-chrome digimend-kernel-drivers-dkms binance anydesk-bin heroic-games-launcher-bin vivaldi discord betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser obs-studio visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
+yay -S --needed --noconfirm --sudoloop mangohud cpu-x minecraft-launcher teamviewer steam-native steam-manjaro parsec-bin teams openrgb input-remapper-git google-chrome digimend-kernel-drivers-dkms binance anydesk-bin heroic-games-launcher-bin vivaldi discord betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
 
 # Create link if chrome stable exists
 if [ -e  "/usr/bin/google-chrome-stable" ];  then
@@ -31,9 +31,9 @@ yay -S amdgpu-pro-libgl opencl-amd
 
 yay -S --needed --noconfirm --sudoloop easyeffects gimp inkscape blender mypaint pavucontrol
 
-yay -S --needed --noconfirm --sudoloop onlyoffice-desktopeditors
+yay -S --needed --noconfirm --sudoloop onlyoffice-desktopeditors com.obsproject.Studio
 
-$fpki org.gnome.World.PikaBackup org.onionshare.OnionShare com.github.micahflee.torbrowser-launcher
+$fpki org.gnome.World.PikaBackup org.onionshare.OnionShare com.github.micahflee.torbrowser-launcher org.electrum.electrum org.dash.electrum.electrum_dash com.belmoussaoui.Decoder
 $fpki com.adobe.Flash-Player-Projector
 
 sudo systemctl enable sshd.service
