@@ -9,11 +9,8 @@ stamp "Manjaro: "
 sudo pacman -Syu
 sudo pacman -S yay paru
 
-yay -S pipewire
-yay -S pipewire-pulse
-yay -R manjaro-pulse
-yay -R pulseaudio-jack pulseaudio-lirc pulseaudio-rtp pulseaudio-zeroconf
-yay -S pipewire-pulse
+yay -S manjaro-pipewire pipewire pipewire-pulse
+# yay -R pulseaudio-jack pulseaudio-lirc pulseaudio-rtp pulseaudio-zeroconf
 #yay -S manjaro-pipewire pipewire-jack-dropin
 #echo ‘export PIPEWIRE_LATENCY=“128/48000”’ >> ~/.profile
 
@@ -21,13 +18,13 @@ yay -S pipewire-pulse
 yay -S --needed pwgen figlet x11vnc qt5ct wine winetricks wine-mono i2c-tools python-pip python-pipx git gitui htop smbclient samba npm sshpass linux515 linux515-headers flatpak flatpak-builder android-tools bash-completion noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-windows ttf-ms-fonts openssh openssh-askpass x11-ssh-askpass xpad-dkms-git gnome-session-properties startup-settings-git adduser amdgpu-pro-libgl opencl-amd digimend-kernel-drivers-dkms
 
 # System extras
-yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin 
+yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin v4l2loopback-dkms
 
 # Programs to system
 yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy
 
 # Programs
-yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta minetest kdenlive fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
+yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
 
 # Create link if chrome stable exists
 if [ -e  "/usr/bin/google-chrome-stable" ];  then
@@ -36,6 +33,7 @@ fi
 
 # yay -R gimp inkscape pavucontrol easyeffects onlyoffice-desktopeditors obs-studio pdfmod cheese
 # yay -R steam-native steam-manjaro discord
+# yay -R kdenlive minetest totem
 
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service

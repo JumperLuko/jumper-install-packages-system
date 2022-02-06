@@ -6,9 +6,9 @@ stamp "Flatpak: "
 # System tools
 fpki com.github.tchx84.Flatseal 
 # Frequently used
-fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha
+fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem
 # Artistic
-fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender
+fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive
 # Office
 fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger
 # Security
@@ -20,7 +20,7 @@ fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownload
 # Development
 fpki org.gnome.gitlab.somas.Apostrophe org.gnome.design.Contrast
 # Games
-fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector
+fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest
 
 echo "Kooha fix?"
 yes_no;if [ $yes_or_no == "yes" ]; then
