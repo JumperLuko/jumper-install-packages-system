@@ -24,7 +24,7 @@ yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted
 yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy
 
 # Programs
-yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin spotify brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
+yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
 
 # Create link if chrome stable exists
 if [ -e  "/usr/bin/google-chrome-stable" ];  then
@@ -33,7 +33,7 @@ fi
 
 # yay -R gimp inkscape pavucontrol easyeffects onlyoffice-desktopeditors obs-studio pdfmod cheese
 # yay -R steam-native steam-manjaro discord
-# yay -R kdenlive minetest totem
+# paru -R kdenlive minetest totem spotify
 
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
