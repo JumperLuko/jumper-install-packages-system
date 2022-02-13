@@ -6,7 +6,7 @@ stamp "Flatpak: "
 # System tools
 fpki com.github.tchx84.Flatseal 
 # Frequently used
-fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client
+fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton-GE
 # Artistic
 fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive
 # Office
