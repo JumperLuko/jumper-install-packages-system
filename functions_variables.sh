@@ -27,3 +27,4 @@ fpki (){
     sudo flatpak install flathub $1 -y
 }
 
+dialog=./dialog
