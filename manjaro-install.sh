@@ -25,18 +25,28 @@ yay -S manjaro-pipewire pipewire pipewire-pulse
 yay -S --needed pwgen figlet x11vnc qt5ct wine winetricks wine-mono i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools bash-completion noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-windows ttf-ms-fonts openssh openssh-askpass x11-ssh-askpass xpad-dkms-git gnome-session-properties startup-settings-git adduser amdgpu-pro-libgl opencl-amd digimend-kernel-drivers-dkms linux-headers neofetch dialog
 
 # System extras
-yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin v4l2loopback-dkms gpu-viewer
+yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin v4l2loopback-dkms gpu-viewer qgnomeplatform
 
 # Programs to system
-yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy
+yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy xdg-launch thinlinc-server cpu-x 
 
 # Programs
-yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor
+yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor darling-bin
 
 # Create link if chrome stable exists
 if [ -e  "/usr/bin/google-chrome-stable" ];  then
 	sudo ln -s "/usr/bin/google-chrome-stable" "/usr/bin/google-chrome"
 fi
+
+# Printer
+# https://wiki.manjaro.org/index.php?title=Printing
+# https://wiki.archlinux.org/title/CUPS/Printer-specific_problems#Epson
+# Serch in Pamac gui by: priter driver
+pamac install manjaro-printer ipp-usb hplip epson-inkjet-printer-escpr epson-inkjet-printer-escpr2
+sudo gpasswd -a $USER sys
+sudo systemctl enable --now cups.service
+sudo systemctl enable --now cups.socket
+sudo systemctl enable --now cups.path
 
 # Process driver huion
 # sudo modprobe -r hid-kye hid-uclogic hid-polostar hid-viewsonic

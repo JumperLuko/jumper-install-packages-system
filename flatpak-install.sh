@@ -9,7 +9,7 @@ sudo flatpak remote-add --if-not-exists kdeapps --from https://distribute.kde.or
 # System tools
 fpki com.github.tchx84.Flatseal 
 # Frequently used
-fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton com.valvesoftware.Steam.CompatibilityTool.Proton-GE net.davidotek.pupgui2 org.freedesktop.Platform.VulkanLayer.MangoHud
+fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton com.valvesoftware.Steam.CompatibilityTool.Proton-GE net.davidotek.pupgui2 org.freedesktop.Platform.VulkanLayer.MangoHud com.github.Matoking.protontricks
 # Artistic
 fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive
 # Office
@@ -23,7 +23,7 @@ fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownload
 # Development
 fpki org.gnome.gitlab.somas.Apostrophe org.gnome.design.Contrast
 # Games
-fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest
+fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest com.atlauncher.ATLauncher org.polymc.PolyMC
 
 echo "Kooha fix?"
 yes_no;if [ $yes_or_no == "yes" ]; then

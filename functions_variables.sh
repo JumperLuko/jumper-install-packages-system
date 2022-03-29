@@ -24,7 +24,7 @@ yes_no() {
 }
 
 fpki (){
-    sudo flatpak install flathub $1 -y
+    sudo flatpak install flathub $1 --system -y
 }
 
 dialog=./dialog
