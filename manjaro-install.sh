@@ -9,40 +9,58 @@ stamp "Manjaro: "
 #-y: download fresh package databases from the server
 #-u: upgrade all installed packages
 sudo pacman -Syu
-sudo pacman -S yay paru
+sudo pacman -S paru-bin
 
 # Snap
-pamac install snapd libpamac-snap-plugin
-ln -s /var/lib/snapd/snap /snap
+##pamac install snapd libpamac-snap-plugin
+##ln -s /var/lib/snapd/snap /snap
 # pamac install gnome-software-snap
 
-yay -S manjaro-pipewire pipewire pipewire-pulse
+# pipewire audio
+echo "=== Pipewire ==="
+pami manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-x11-bell realtime-privileges
 # yay -R pulseaudio-jack pulseaudio-lirc pulseaudio-rtp pulseaudio-zeroconf
 #yay -S manjaro-pipewire pipewire-jack-dropin
 #echo ‘export PIPEWIRE_LATENCY=“128/48000”’ >> ~/.profile
 
 # System basics
-yay -S --needed pwgen figlet x11vnc qt5ct wine winetricks wine-mono i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools bash-completion noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-windows ttf-ms-fonts openssh openssh-askpass x11-ssh-askpass xpad-dkms-git gnome-session-properties startup-settings-git adduser amdgpu-pro-libgl opencl-amd digimend-kernel-drivers-dkms linux-headers neofetch dialog
+echo "=== Basics ==="
+pami game-devices-udev bash-completion octopi dialog kdialog pwgen figlet x11vnc qt5ct wine winetricks wine-mono noto-fonts noto-fonts-emoji libgnome-keyring i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools openssh openssh-askpass x11-ssh-askpass linux-headers neofetch autofs cifs-utils
+pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms-fonts gnome-session-properties startup-settings-git adduser
+# Too big: noto-fonts-cjk   	
 
 # System extras
-yay -S --needed --noconfirm  menulibre gnome-tweak-tool linssid hardinfo gparted nautilus-share nautilus-image-converter nautilus-admin nautilus-hide nautilus-renamer nautilus-ext-git-git nautilus-wipe stacer-bin v4l2loopback-dkms gpu-viewer qgnomeplatform
+echo "=== System Extras ==="
+pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform
+pami hardinfo-git nautilus-hide nautilus-renamer nautilus-ext-git-git
+# gpu-viewer -> flatpak
 
-# Programs to system
-yay -S --needed --noconfirm corectrl  mangohud cpu-x openrgb input-remapper-git ventoy xdg-launch thinlinc-server cpu-x 
+# Programs to manage system
+echo "=== Apps to system ==="
+pami ventoy 
+pami corectrl mangohud glfw-wayland glfw-x11 input-remapper-git ventoy cpu-x
+parui thinlinc-server xdg-launch
+# openrgb -> flatpak
 
 # Programs
-yay -S --needed --noconfirm --sudoloop geany rawtherapee darktable audacity qbittorrent vlc remmina remmina-plugin-teamviewer gpick pinta fontforge virt-manager simplescreenrecorder minecraft-launcher teamviewer parsec-bin teams google-chrome binance anydesk-bin heroic-games-launcher-bin vivaldi betterdiscordctl discover-overlay plex-media-server virtualbox popcorntime motrix-bin brave-browser visual-studio-code-bin multisystem tabby-bin forticlient webapp-manager tor darling-bin
+echo "=== Programs ==="
+pami vivaldi vivaldi-ffmpeg-codecs discord brave-browser geany rawtherapee audacity qbittorrent remmina freerdp gpick pinta fontforge virt-manager simplescreenrecorder virtualbox webapp-manager tor torsocks
+pami heroic-games-launcher-bin waydroid waydroid-image visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server popcorntime-bin motrix-bin tabby-bin forticlient
+parui darling-bin
+# Handbrake -> flatpak
+# Not necessary: darktable dcraw perl-image-exiftool gnuplot, teams
+# Error: multisystem
 
-# Create link if chrome stable exists
-if [ -e  "/usr/bin/google-chrome-stable" ];  then
-	sudo ln -s "/usr/bin/google-chrome-stable" "/usr/bin/google-chrome"
-fi
+# Deepin
+echo "=== Deepin apps ==="
+pamai deepin-system-monitor
 
 # Printer
+echo "=== Printer ==="
 # https://wiki.manjaro.org/index.php?title=Printing
 # https://wiki.archlinux.org/title/CUPS/Printer-specific_problems#Epson
 # Serch in Pamac gui by: priter driver
-pamac install manjaro-printer ipp-usb hplip epson-inkjet-printer-escpr epson-inkjet-printer-escpr2
+pamai manjaro-printer system-config-printer ipp-usb hplip epson-inkjet-printer-escpr epson-inkjet-printer-escpr2
 sudo gpasswd -a $USER sys
 sudo systemctl enable --now cups.service
 sudo systemctl enable --now cups.socket
@@ -55,10 +73,23 @@ sudo systemctl enable --now cups.path
 # yay -R steam-native steam-manjaro discord
 # paru -R kdenlive minetest totem spotify linux515 linux515-headers
 
+# Plex and Chrome link
+# Create link if chrome stable exists
+echo "=== Chrome and Chrome fix ==="
+if [ -e  "/usr/bin/google-chrome-stable" ] && ! [ -e  "/usr/bin/google-chrome" ];  then
+	sudo ln -s "/usr/bin/google-chrome-stable" "/usr/bin/google-chrome"
+fi
+if [ -e  "/usr/bin/brave" ] && ! [ -e  "/usr/bin/brave-browser" ];  then
+	sudo ln -s /usr/bin/brave /usr/bin/brave-browser
+fi
+
 # Enable ssh
+echo "=== Enable SSH ==="
 sudo systemctl enable sshd.service
 sudo systemctl start sshd.service
 
+# Plex Jumper
+echo "=== Plex config ==="
 echo -r "\n Link Plex folder to /mnt/Jumper-Storage/var/?"
 yes_no;if [ $yes_or_no == "yes" ]; then
 	sudo systemctl stop plexmediaserver
@@ -67,9 +98,8 @@ yes_no;if [ $yes_or_no == "yes" ]; then
 	sudo systemctl start plexmediaserver
 fi
 
-# Brave link
-sudo ln -s /usr/bin/brave /usr/bin/brave-browser
-
+# Samba config
+echo "=== Samba config ==="
 sudo systemctl enable smb.service
 sudo systemctl start smb.service
 sudo smbpasswd -a $USER
@@ -79,8 +109,11 @@ sudo usermod -aG sambashare $USER
 #net usershare add $USER
 #sudo nano /etc/samba/smb.conf
 
-yay -S autofs cifs-utils smbclient #udev mount
-
+echo "=== Dialog install ==="
 (cd ../dialog-output/ && ./INSTALL.sh)
+
+# Fixes
+echo "Comment QT_QPA_PLATFORMTHEME" && sleep 3
+sudo nano /etc/environment
 
 read -p "Enter to exit..."

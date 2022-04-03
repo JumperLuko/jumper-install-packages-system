@@ -7,9 +7,9 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo flatpak remote-add --if-not-exists kdeapps --from https://distribute.kde.org/kdeapps.flatpakrepo
 
 # System tools
-fpki com.github.tchx84.Flatseal 
+fpki com.github.tchx84.Flatseal io.github.arunsivaramanneo.GPUViewer org.openrgb.OpenRGB
 # Frequently used
-fpki com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton com.valvesoftware.Steam.CompatibilityTool.Proton-GE net.davidotek.pupgui2 org.freedesktop.Platform.VulkanLayer.MangoHud com.github.Matoking.protontricks
+fpki org.telegram.desktop com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton com.valvesoftware.Steam.CompatibilityTool.Proton-GE net.davidotek.pupgui2 org.freedesktop.Platform.VulkanLayer.MangoHud com.github.Matoking.protontricks
 # Artistic
 fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive
 # Office
@@ -17,7 +17,7 @@ fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger
 # Security
 fpki org.onionshare.OnionShare com.github.micahflee.torbrowser-launcher org.electrum.electrum org.dash.electrum.electrum_dash fr.romainvigier.MetadataCleaner
 # Tools common
-fpki com.belmoussaoui.Decoder com.github.gi_lom.dialect com.belmoussaoui.Obfuscate org.gnome.Cheese
+fpki com.belmoussaoui.Decoder com.github.gi_lom.dialect com.belmoussaoui.Obfuscate org.gnome.Cheese fr.handbrake.ghb
 # Tools unusual
 fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownloader org.flozz.yoga-image-optimizer codes.nora.gDiceRoller
 # Development

@@ -24,7 +24,15 @@ yes_no() {
 }
 
 fpki (){
-    sudo flatpak install flathub $1 --system -y
+    sudo flatpak install flathub $@ --system -y
+}
+
+pami (){
+    sudo pamac install --no-confirm $@
+}
+
+parui (){
+    paru -S --needed --noconfirm --sudoloop $@
 }
 
 dialog=./dialog
