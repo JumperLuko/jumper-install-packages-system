@@ -7,23 +7,23 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 sudo flatpak remote-add --if-not-exists kdeapps --from https://distribute.kde.org/kdeapps.flatpakrepo
 
 # System tools
-fpki com.github.tchx84.Flatseal io.github.arunsivaramanneo.GPUViewer org.openrgb.OpenRGB
+fpki com.github.tchx84.Flatseal io.github.arunsivaramanneo.GPUViewer org.gnome.eog
 # Frequently used
 fpki org.telegram.desktop com.github.wwmm.easyeffects org.pipewire.Helvum org.pulseaudio.pavucontrol org.gnome.World.PikaBackup io.github.seadve.Kooha org.gnome.Totem com.spotify.Client com.valvesoftware.Steam com.valvesoftware.Steam.CompatibilityTool.Proton com.valvesoftware.Steam.CompatibilityTool.Proton-GE net.davidotek.pupgui2 org.freedesktop.Platform.VulkanLayer.MangoHud com.github.Matoking.protontricks
 # Artistic
-fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive
+fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive io.github.Figma_Linux.figma_linux
 # Office
-fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger
+fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger us.zoom.Zoom
 # Security
 fpki org.onionshare.OnionShare com.github.micahflee.torbrowser-launcher org.electrum.electrum org.dash.electrum.electrum_dash fr.romainvigier.MetadataCleaner
 # Tools common
-fpki com.belmoussaoui.Decoder com.github.gi_lom.dialect com.belmoussaoui.Obfuscate org.gnome.Cheese fr.handbrake.ghb
+fpki com.belmoussaoui.Decoder com.github.gi_lom.dialect com.belmoussaoui.Obfuscate org.gnome.Cheese fr.handbrake.ghb org.mozilla.firefox com.usebottles.bottles
 # Tools unusual
 fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownloader org.flozz.yoga-image-optimizer codes.nora.gDiceRoller
 # Development
 fpki org.gnome.gitlab.somas.Apostrophe org.gnome.design.Contrast
 # Games
-fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest com.atlauncher.ATLauncher org.polymc.PolyMC
+fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest com.atlauncher.ATLauncher org.polymc.PolyMC com.heroicgameslauncher.hgl
 
 echo "Kooha fix?"
 yes_no;if [ $yes_or_no == "yes" ]; then

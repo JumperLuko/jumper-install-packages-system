@@ -31,29 +31,30 @@ pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms
 
 # System extras
 echo "=== System Extras ==="
-pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform
+pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform gnome-software malcontent 
 pami hardinfo-git nautilus-hide nautilus-renamer nautilus-ext-git-git
 # gpu-viewer -> flatpak
+# pamac-gnome-integration
 
 # Programs to manage system
 echo "=== Apps to system ==="
 pami ventoy 
-pami corectrl mangohud glfw-wayland glfw-x11 input-remapper-git ventoy cpu-x
+pami corectrl mangohud glfw-wayland glfw-x11 input-remapper-git ventoy cpu-x openrgb-bin
 parui thinlinc-server xdg-launch
-# openrgb -> flatpak
 
 # Programs
 echo "=== Programs ==="
 pami vivaldi vivaldi-ffmpeg-codecs discord brave-browser geany rawtherapee audacity qbittorrent remmina freerdp gpick pinta fontforge virt-manager simplescreenrecorder virtualbox webapp-manager tor torsocks
-pami heroic-games-launcher-bin waydroid waydroid-image visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server popcorntime-bin motrix-bin tabby-bin forticlient
+pami waydroid waydroid-image visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server popcorntime-bin motrix-bin tabby-bin forticlient
 parui darling-bin
+pamac remove --noconfirm firefox firefox-gnome-theme-maia
 # Handbrake -> flatpak
 # Not necessary: darktable dcraw perl-image-exiftool gnuplot, teams
 # Error: multisystem
 
 # Deepin
 echo "=== Deepin apps ==="
-pamai deepin-system-monitor
+pamai deepin-system-monitor deepin-movie
 
 # Printer
 echo "=== Printer ==="
@@ -113,7 +114,17 @@ echo "=== Dialog install ==="
 (cd ../dialog-output/ && ./INSTALL.sh)
 
 # Fixes
-echo "Comment QT_QPA_PLATFORMTHEME" && sleep 3
+# QT
+echo "Comment QT_QPA_PLATFORMTHEME"
+echo "#XDG_SESSION_TYPE=wayland"
+echo "QT_QPA_PLATFORM=wayland"
+read -p "Enter to continue..."
 sudo nano /etc/environment
+
+# # i2c-dev for openrgb
+# echo "put i2c-dev"
+# read -p "Enter to continue..."
+# sudo nano /etc/mkinitcpio.conf
+# sudo mkinitcpio -P
 
 read -p "Enter to exit..."
