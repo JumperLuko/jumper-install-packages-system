@@ -31,6 +31,10 @@ pami (){
     sudo pamac install --no-confirm $@
 }
 
+pamr (){
+    sudo pamac remove --no-confirm $@
+}
+
 parui (){
     paru -S --needed --noconfirm --sudoloop $@
 }

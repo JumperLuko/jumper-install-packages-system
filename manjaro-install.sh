@@ -2,7 +2,7 @@
 
 source ./functions_variables.sh
 stamp "Manjaro: "
-
+ 
 . ./dialog-output.sh --backtitle "Jumper Installer" --title "Welcome!" --msgbox "\nWelcome to Jumper Installer for Manjaro!\n\nPlease press enter em type the password" 9 50
 
 #-S: synchronize your system’s packages with those in the official repo
@@ -25,13 +25,16 @@ pami manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-x11-bell realtime-pri
 
 # System basics
 echo "=== Basics ==="
-pami game-devices-udev bash-completion octopi dialog kdialog pwgen figlet x11vnc qt5ct wine winetricks wine-mono noto-fonts noto-fonts-emoji libgnome-keyring i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools openssh openssh-askpass x11-ssh-askpass linux-headers neofetch autofs cifs-utils
-pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms-fonts gnome-session-properties startup-settings-git adduser
+pami game-devices-udev bash-completion octopi dialog kdialog pwgen figlet x11vnc qt5ct noto-fonts noto-fonts-emoji libgnome-keyring i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools openssh openssh-askpass x11-ssh-askpass linux-headers neofetch autofs cifs-utils topgrade
+pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms-fonts gnome-session-properties startup-settings-git adduser adwaita-shell-theme
+pamr adwaita-maia
+#Wine
+pami wine winetricks wine-mono lib32-v4l-utils lib32-ocl-icd lib32-libxslt lib32-gst-plugins-base-libs vkd3d lib32-vkd3d dosbox
 # Too big: noto-fonts-cjk   	
 
 # System extras
 echo "=== System Extras ==="
-pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform gnome-software malcontent 
+pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform-qt5 adwaita-qt5 gnome-software malcontent minidlna
 pami hardinfo-git nautilus-hide nautilus-renamer nautilus-ext-git-git
 # gpu-viewer -> flatpak
 # pamac-gnome-integration
@@ -39,18 +42,21 @@ pami hardinfo-git nautilus-hide nautilus-renamer nautilus-ext-git-git
 # Programs to manage system
 echo "=== Apps to system ==="
 pami ventoy 
-pami corectrl mangohud glfw-wayland glfw-x11 input-remapper-git ventoy cpu-x openrgb-bin
+pami corectrl mangohud glfw-wayland glfw-x11 input-remapper-git ventoy cpu-x openrgb-bin stacer-bin
 parui thinlinc-server xdg-launch
+#paru -R file-roller
 
 # Programs
 echo "=== Programs ==="
-pami vivaldi vivaldi-ffmpeg-codecs discord brave-browser geany rawtherapee audacity qbittorrent remmina freerdp gpick pinta fontforge virt-manager simplescreenrecorder virtualbox webapp-manager tor torsocks
-pami waydroid waydroid-image visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server popcorntime-bin motrix-bin tabby-bin forticlient
+pami vivaldi vivaldi-ffmpeg-codecs discord brave-browser geany rawtherapee audacity qbittorrent remmina freerdp gpick pinta fontforge virt-manager simplescreenrecorder virtualbox webapp-manager tor torsocks alvr sidequest-bin
+pami visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server motrix-bin tabby-bin forticlient distrobox podman
 parui darling-bin
 pamac remove --noconfirm firefox firefox-gnome-theme-maia
+# heavy: waydroid waydroid-image popcorntime-bin
 # Handbrake -> flatpak
 # Not necessary: darktable dcraw perl-image-exiftool gnuplot, teams
 # Error: multisystem
+# Hard to use: docker docker-compose
 
 # Deepin
 echo "=== Deepin apps ==="
@@ -84,6 +90,9 @@ if [ -e  "/usr/bin/brave" ] && ! [ -e  "/usr/bin/brave-browser" ];  then
 	sudo ln -s /usr/bin/brave /usr/bin/brave-browser
 fi
 
+# Default Bash
+chsh -s /bin/bash $USER
+
 # Enable ssh
 echo "=== Enable SSH ==="
 sudo systemctl enable sshd.service
@@ -113,13 +122,27 @@ sudo usermod -aG sambashare $USER
 echo "=== Dialog install ==="
 (cd ../dialog-output/ && ./INSTALL.sh)
 
+echo "=== Docker permissions ==="
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker run hello-world
+
+# https://wiki.archlinux.org/title/Podman#Rootless_Podman
+echo "=== Docker rootless for Distrobox ==="
+sysctl kernel.unprivileged_userns_clone
+# sudo touch /etc/subuid /etc/subgid
+sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
+# cat /etc/subuid
+# cat /etc/subgid
+
 # Fixes
 # QT
-echo "Comment QT_QPA_PLATFORMTHEME"
-echo "#XDG_SESSION_TYPE=wayland"
-echo "QT_QPA_PLATFORM=wayland"
-read -p "Enter to continue..."
-sudo nano /etc/environment
+# echo "Comment QT_QPA_PLATFORMTHEME"
+# echo "#XDG_SESSION_TYPE=wayland"
+# echo "QT_QPA_PLATFORM=wayland"
+# read -p "Enter to continue..."
+# sudo nano /etc/environment
 
 # # i2c-dev for openrgb
 # echo "put i2c-dev"
