@@ -25,8 +25,8 @@ pami manjaro-pipewire pipewire-jack pipewire-v4l2 pipewire-x11-bell realtime-pri
 
 # System basics
 echo "=== Basics ==="
-pami game-devices-udev bash-completion octopi dialog kdialog pwgen figlet x11vnc qt5ct noto-fonts noto-fonts-emoji libgnome-keyring i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools openssh openssh-askpass x11-ssh-askpass linux-headers neofetch autofs cifs-utils topgrade
-pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms-fonts gnome-session-properties startup-settings-git adduser adwaita-shell-theme
+pami game-devices-udev bash-completion octopi dialog kdialog pwgen figlet x11vnc qt5ct noto-fonts noto-fonts-emoji libgnome-keyring i2c-tools python-pip python-pipx git tk htop smbclient samba npm sshpass flatpak flatpak-builder android-tools openssh openssh-askpass x11-ssh-askpass linux-headers neofetch autofs cifs-utils topgrade gnome-console
+pami opencl-amd amdgpu-pro-libgl digimend-kernel-drivers-dkms ttf-windows ttf-ms-fonts gnome-session-properties startup-settings-git adduser adwaita-shell-theme radeon-profile-daemon-git radeon-profile-git
 pamr adwaita-maia
 #Wine
 pami wine winetricks wine-mono lib32-v4l-utils lib32-ocl-icd lib32-libxslt lib32-gst-plugins-base-libs vkd3d lib32-vkd3d dosbox
@@ -34,7 +34,7 @@ pami wine winetricks wine-mono lib32-v4l-utils lib32-ocl-icd lib32-libxslt lib32
 
 # System extras
 echo "=== System Extras ==="
-pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform-qt5 adwaita-qt5 gnome-software malcontent minidlna
+pami xdotool catimg chafa feh menulibre gnome-tweak-tool linssid gparted nautilus-share nautilus-image-converter nautilus-admin v4l2loopback-dkms qgnomeplatform-qt5 adwaita-qt5 gnome-software malcontent minidlna apache php php-apache
 pami hardinfo-git nautilus-hide nautilus-renamer nautilus-ext-git-git
 # gpu-viewer -> flatpak
 # pamac-gnome-integration
@@ -49,7 +49,7 @@ parui thinlinc-server xdg-launch
 # Programs
 echo "=== Programs ==="
 pami vivaldi vivaldi-ffmpeg-codecs discord brave-browser geany rawtherapee audacity qbittorrent remmina freerdp gpick pinta fontforge virt-manager simplescreenrecorder virtualbox webapp-manager tor torsocks alvr sidequest-bin
-pami visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server motrix-bin tabby-bin forticlient distrobox podman
+pami visual-studio-code-bin teamviewer remmina-plugin-teamviewer minecraft-launcher parsec-bin google-chrome binance anydesk-bin betterdiscordctl discover-overlay plex-media-server motrix-bin tabby-bin forticlient distrobox podman curseforge fontbase
 parui darling-bin
 pamac remove --noconfirm firefox firefox-gnome-theme-maia
 # heavy: waydroid waydroid-image popcorntime-bin

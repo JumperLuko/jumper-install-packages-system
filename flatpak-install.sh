@@ -14,17 +14,19 @@ fpki org.telegram.desktop com.github.wwmm.easyeffects org.pipewire.Helvum org.pu
 # Artistic
 fpki org.gimp.GIMP org.inkscape.Inkscape org.kde.krita org.mypaint.MyPaint org.blender.Blender org.kde.kdenlive io.github.Figma_Linux.figma_linux
 # Office
-fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger us.zoom.Zoom com.slack.Slack
+fpki org.onlyoffice.desktopeditors com.github.jeromerobert.pdfarranger us.zoom.Zoom com.slack.Slack com.rtosta.zapzap
 # Security
 fpki org.onionshare.OnionShare com.github.micahflee.torbrowser-launcher org.electrum.electrum org.dash.electrum.electrum_dash fr.romainvigier.MetadataCleaner
 # Tools common
 fpki com.belmoussaoui.Decoder com.github.gi_lom.dialect com.belmoussaoui.Obfuscate org.gnome.Cheese fr.handbrake.ghb org.mozilla.firefox com.usebottles.bottles
 # Tools unusual
-fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownloader org.flozz.yoga-image-optimizer codes.nora.gDiceRoller
+fpki com.rafaelmardojai.Blanket org.gabmus.whatip com.github.unrud.VideoDownloader org.flozz.yoga-image-optimizer codes.nora.gDiceRoller io.bassi.Amberol
 # Development
 fpki org.gnome.gitlab.somas.Apostrophe org.gnome.design.Contrast io.github.shiftey.Desktop
 # Games
 fpki io.mrarm.mcpelauncher com.adobe.Flash-Player-Projector net.minetest.Minetest com.atlauncher.ATLauncher org.polymc.PolyMC com.heroicgameslauncher.hgl
+# Money
+fbki io.exodus.Exodus
 
 echo "Kooha fix?"
 yes_no;if [ $yes_or_no == "yes" ]; then
