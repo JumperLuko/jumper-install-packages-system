@@ -9,7 +9,8 @@ stamp "Manjaro: "
 #-y: download fresh package databases from the server
 #-u: upgrade all installed packages
 sudo pacman -Syu
-sudo pacman -S paru-bin
+# There's no paru package on Manjaro common repos :P
+# sudo pacman -S paru-bin
 
 # Snap
 ##pamac install snapd libpamac-snap-plugin
